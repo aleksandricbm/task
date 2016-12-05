@@ -26,38 +26,5 @@
         </div>
       </div>
     </div>
-    <br>
-    <h5>Write the queries for: </h5>
-    <ol>
-      <li>get all statuses, not repeating, alphabetically ordered: <br>&nbsp;&nbsp;<b>select `status` from tasks group by `status` order by `status` asc</b></li>
-      <li>get the count of all tasks in each project, order by tasks count descending: <br>&nbsp;&nbsp;
-      <b>select count(tasks.id) as qty, projects.name from tasks inner join projects on (projects.id=tasks.project_id) group by projects.name order by qty desc</b>
-      </li>
-
-      <li>get the count of all tasks in each project, order by projects names : <br>&nbsp;&nbsp;<b>select count(tasks.id) as qty, projects.name from tasks inner join projects on (projects.id=tasks.project_id) group by projects.name order by projects.name asc</b></li>
-      
-      <li>get the tasks for all projects having the name beginning with “N” letter : <br>&nbsp;&nbsp;<b>select tasks.name, projects.name from tasks inner join projects on (projects.id=tasks.project_id) where tasks.name like 'N%' </b></li>
-      
-      <li> get the list of all projects containing the ‘a’ letter in the middle of the name, and
-show the tasks count near each project. Mention that there can exist projects without
-tasks and tasks with project_id=NULL : <br>&nbsp;&nbsp;<b>select count(tasks.id), projects.name from projects
-left outer join tasks  on (projects.id=tasks.project_id)
-where projects.`name` like '_%a%_' group by projects.name</b></li>
-      
-      <li>get the list of tasks with duplicate names. Order alphabetically : <br>&nbsp;&nbsp;<b>select name from tasks group by name  having count(id)>1  order by name asc</b></li>
-      
-      <li>get the list of tasks having several exact matches of both name and status, from
-the project ‘Garage’. Order by matches count : <br>&nbsp;&nbsp;<b>select count(tasks.id), tasks.name, tasks.status  from projects
-inner join tasks  on (projects.id=tasks.project_id)
-where projects.`name` ='Garage' group by  tasks.name, tasks.status
-order by count(tasks.id) desc</b></li>
-      
-      <li>get the list of project names having more than 10 tasks in status ‘completed’. Order
-by project_id : <br>&nbsp;&nbsp;<b>select projects.name from projects
-inner join tasks  on (projects.id=tasks.project_id)
-where tasks.`status` =1 group by projects.name 
-having count(tasks.id)>10 order by projects.id asc</b></li>
-    </ol>
-
   </body>
 </html>
