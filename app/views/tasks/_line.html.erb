@@ -1,0 +1,34 @@
+      
+<% 
+sl=''
+if task.status == '1' 
+	sl='background-color: #dbf7d9;'  
+end	
+%>
+
+      <div class="row div_border" style="<%= sl %>" id="p<%= task.project_id %>_<%= task.id %>">
+        <div class="col-lg-1" style="">
+
+<% if task.status == '1' %>
+   
+   <%= check_box_tag "ts_cp[#{task.id}]", task.id, true, :class=>"checkbox_task", :name => "ts_cp[]" %>
+<% else %>
+   
+   <%= check_box_tag "ts_cp[#{task.id}]", task.id, false, :class=>"checkbox_task", :name => "ts_cp[]"  %>
+<% end %>
+
+        </div>
+       
+        <div class="col-lg-6" style="overflow-wrap: break-word;" id="task_nm<%= task.id %>"  ><%=task.name%></div>
+        <div class="col-lg-1"><span class="date_dead_line"><%= task.dead_line.try(:strftime, '%d.%m.%Y') %></span></div>
+        <div class="col-lg-4 but_vis" style="text-align: right; display: none;">
+        	<span class="glyphicon glyphicon-arrow-up tsup" value='<%= task.id %>' "></span>&nbsp;
+        	<span class="glyphicon glyphicon-arrow-down tsdown" value='<%= task.id %>'></span>&nbsp;
+        	<span class="glyphicon glyphicon-edit" id=task_edit<%= task.id %> onclick="task_edit(<%= task.id %>)"></span>&nbsp;
+        	<input type='hidden' value="" class='dp' />
+            <span class="glyphicon glyphicon-calendar" value='<%= task.id %>'></span>&nbsp;
+			<%= link_to task, method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, class: "delete-task" do %>
+    		<span class="glyphicon glyphicon-remove"></span>
+			<% end %>
+        </div>
+      </div>

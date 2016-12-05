@@ -1,0 +1,33 @@
+<div class="panel panel-info" id="proj<%= project.id %>">
+  <div class="panel-heading">
+    <div class="row pr">
+    <div class="col-lg-1"><span class="glyphicon glyphicon-list-alt"></span></div>
+    <div class="col-lg-9" id=pr<%= project.id %>><%= project.name %></div>
+    <div class="col-lg-2 pr_vis" style="display: none"><span class="glyphicon glyphicon-edit" id=bted<%= project.id %> onclick="edit_project(<%= project.id %>)"></span> &nbsp;
+
+       <%= link_to project, method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, class: "delete-project" do %>
+        <span class="glyphicon glyphicon-remove"></span>
+        <% end %>
+    </div>
+    </div>
+  </div>
+  <div class="panel-body">
+      <div class="row alert alert-warning">
+        <div class="col-lg-1"><span class="glyphicon glyphicon-plus"></span></div>
+        <div class="col-lg-9"><input type="text" class="form-control input-sm" id="newTask<%= project.id %>" placeholder="Start typing here to create a task..."></div>
+        <div class="col-lg-2"><button type="button" class="btn btn-success btn-sm" onClick=add_task('<%= project.id %>')>Add Task</button></div>
+      </div>
+    
+    <% if nil!=@tasks %>
+      <% @tasks.each do |task| %>
+        <%  if task.project_id==project.id %>
+        
+        
+        <%= render partial: "tasks/line", :locals => { :task => task } %>
+
+
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

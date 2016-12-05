@@ -1,0 +1,32 @@
+// Place all the styles related to the Projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.glyphicon-edit, .glyphicon-arrow-up, .glyphicon-arrow-down, .glyphicon-calendar {
+	cursor: pointer;
+	}
+
+.div_border{
+	border: 1px solid #bce8f1;
+}
+.div_border:hover{
+	
+	background-color: #d9edf7;
+}
+.panel-body{
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.alert{
+	margin-bottom: 0px;
+}
+
+.row{
+	padding: 5px 0 5px 0;
+
+}
+
+ol>li{
+	    padding-bottom: 10px;
+}
